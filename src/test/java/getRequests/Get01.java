@@ -1,11 +1,11 @@
-package get01;
+package getRequests;
 
-import io.restassured.response.Response;
-import org.testng.annotations.Test;
-
+import org.junit.Test;
 import static io.restassured.RestAssured.*;
+import io.restassured.response.Response;
 
 public class Get01 {
+
     /*
         Till now, we have sent different http requests Postman for API testing having different documents.
 
@@ -14,20 +14,23 @@ public class Get01 {
 
         From now on, we will use RestAssured Library for API test automation process.
 
-        To be ale to do test, you need a document.
-        We, as Test Engineers, can apply how to use http reqs and how to to do our tests APIs.
+        To be able to do test, you need a document.
+        We, as Test Engineers, can apply how to use http reqs and how to do our tests APIs.
         Besides, we can create test cases and scenarios by following documents. Just like we follow UI and create test cases
         and run those test cases in Selenium Web UI.
 
         Test Case:
+
          --> Expected Result  // TEST CASE
          ---> Actual Result      ====>>>>> I will get from response from API
 
         Gherkin Lang.
+
             Given ---> Pre-requisite of test
             When ---> Action
             Then ---> Assertion
             And  ---> shows that the effect of the previous action continues
+
      */
 
 /*
@@ -41,60 +44,61 @@ public class Get01 {
         Assert that Content Type is in "application/json"
     And
         Assert that Status Line is "HTTP/1.1 200 OK"
+
      */
 
     /*
-We have 4 steps in API testing in general.
+        We have 4 steps in API testing in general.
 
-1)We should identify/set the URL
+        1)We should identify/set the URL
 
-2)We should set the expected data. Expected data is provided by using documents for Test Cases.
-For now, we will ignore this step.
+        2)We should set the expected data. Expected data is provided by using documents for Test Cases.
+        For now, we will ignore this step.
 
+        3)Send Request --> SEND button in Postman
 
-3)Send Request --> SEND button in Postman
-
-4)Do Assertion
- */
-
+        4)Do Assertion
+         */
     @Test
+
     public void userDataCheck(){
         // 1)We should identify/set the URL
-        String url = "https://restful-booker.herokuapp.com/booking/7";
+
+        String URL= "https://restful-booker.herokuapp.com/booking/7";
+
+        // 2)We should set the expected data. Expected data is provided by using documents for Test Cases.
+        //For now, we will ignore this step.
 
         //3)Send Request --> SEND button in Postman
-        /*
-    Given
+        /*Given
         https://restful-booker.herokuapp.com/booking/7
-    When
-        User sends GET Request     */
+        When
+        User sends GET Request*/
+        Response response= given().when().get(URL);
 
-       Response response = given().when().get(url);
-       /*Then
-        Assert that Status Code is "200"
-        */
+        //Assert that Status Code is "200"
         response.then().assertThat().statusCode(200);
 
-        // And
         //Assert that Content Type is in "application/json"
+
         response.then().assertThat().contentType("application/json");
-//        And
-//        Assert that Status Line is "HTTP/1.1 200 OK"
+
+        //Assert that Status Line is "HTTP/1.1 200 OK"
 
         response.then().assertThat().statusLine("HTTP/1.1 200 OK");
 
-        // tum sonucu gormek icin json modunda yazdirmak
-        response.prettyPrint();
+        response.prettyPrint(); //sout gibi
 
-        // sadece status code yazdirmak icin
-        System.out.println("response.getStatusCode() = " + response.getStatusCode());
-        // content type yazdiralim
-        System.out.println("response.getContentType() = " + response.getContentType());
+        //sadece status code yazdırmak icin
+        System.out.println("Response" + response.getStatusCode());
+        //cotent type yazdırmak
+        System.out.println("Content type: " + response.getContentType());
 
-        // response time yazdir
-        System.out.println("response.getTime() = " + response.getTime());
-        // headers lari yazdirmak icin
-        System.out.println("response.getHeaders() = " + response.getHeaders());
+        //response time yazdırmak
+        System.out.println("Time: " + response.getTime());
+
+        //headers yazdırmak içinæ
+        System.out.println("Headers " + response.getHeaders());
 
 
     }
