@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
+import static org.testng.AssertJUnit.assertTrue;
 
 public class HomeWorkGet2 extends DummyRestApiBaseURL {
 /*
@@ -47,7 +48,22 @@ public class HomeWorkGet2 extends DummyRestApiBaseURL {
         //employee_age i 55'ten büyük olanları konsola yazdırınız.
         //		     8 tane olduğunu assert ediniz.
 
-      //  List<Integer> age = jsonPath.getList("data.findAll{(it.employee_age)>55).id");
+        JsonPath jsonPath = response.jsonPath();
+
+        List<Integer> age = jsonPath.getList("data.findAll{(it.employee_age)>55}.employee_age");
+        System.out.println("age > 55 = " + age);
+
+        //id si 17 den büyük olanları konsola yazdırınız
+        //            7 tane olduğunu assert ediniz.
+        List<Integer> id = jsonPath.getList("data.findAll{(it.id)>17}.id");
+        System.out.println("id > 17 = " + id);
+        assertTrue(id.size()==7);
+
+//        salary si 100.000'den az olanları konsola yazdırınız.
+//        Doris Wilder'ın bunlardan biri olduğunu assert ediniz.
+        List<Integer> salary = jsonPath.getList("data.findAll{(it.employee_salary)<100000}.employee_name");
+        System.out.println("salary = " + salary);
+        assertTrue(salary.contains("Doris Wilder"));
 
 
     }

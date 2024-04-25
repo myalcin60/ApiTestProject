@@ -50,8 +50,14 @@ public class DummyRestApiTestData {
 
        return expectedDataList;
 
+    }public  HashMap<String, Object> setUpdeleteData(String status, String data, String message) {
 
+        HashMap<String, Object> expectedBodyData=new HashMap<String, Object>();
+        expectedBodyData.put("status", status);
+        expectedBodyData.put("data", data);
+        expectedBodyData.put("message", message);
 
+        return expectedBodyData;
     }
 
 
