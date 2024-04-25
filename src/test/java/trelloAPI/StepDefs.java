@@ -38,7 +38,7 @@ public class StepDefs {
 
     @When("Kullanıcı board create edebilmek icin ilgili url e POST methodu ve ilgili endpointler ile request atar {string},{string},{string},{string}")
     public void kullanıcı_board_create_edebilmek_icin_ilgili_url_e_POST_methodu_ve_ilgili_endpointler_ile_request_atar(String idPath, String id, String boardsPath, String boards) {
-
+        //https://api.trello.com/1/boards/?name={name}&key=APIKey&token=APIToken'
         //Set the endpoints, query parameters, required field= name
         specification.pathParams(idPath, id,
                         boardsPath, boards).contentType(ContentType.JSON).

@@ -56,5 +56,5 @@ Feature: Kullanıcı Trello API uzerinde cesitli islemler yapabilmelidir
     #"https://api.trello.com/1/boards/{id}?key=APIKey&token=APIToken"
   @deleteBoard
   Scenario: Kullanıcı bord silebilmeli
-    When Kullanıcı board delete islemi icin ilgili url e DELETE metodu ile request atar "idPath","1","boardsPath","c"
+    When Kullanıcı board delete islemi icin ilgili url e DELETE metodu ile request atar "idPath","1","boardsPath","boards"
     Then Kullanıcı basarili bir sekilde boardun delete edildigini verfiy eder
